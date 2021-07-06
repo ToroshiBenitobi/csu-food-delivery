@@ -1,0 +1,13 @@
+spring:
+  # mysql info
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/csu_food_delivery
+    username: root
+    password: mysql123456
+  jpa:
+    hibernate:
+      # auto update table
+      ddl-auto: update
+    # debug show sql
+    show-sql: true
