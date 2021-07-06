@@ -5,6 +5,9 @@ spring:
     url: jdbc:mysql://localhost:3306/csu_food_delivery
     username: root
     password: mysql123456
+  redis:
+    host: localhost
+
   jpa:
     hibernate:
       # auto update table

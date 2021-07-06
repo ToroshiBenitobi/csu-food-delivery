@@ -1,10 +1,11 @@
 package org.csu.delivery.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class User {
-
+public class User implements Serializable {
+    private static final long serialVersionUID = 7156526077883281623L;
     public Integer getId() {
         return id;
     }
@@ -38,6 +39,4 @@ public class User {
 
     @Column
     private String email;
-
-
 }
