@@ -1,25 +1,78 @@
 package org.csu.delivery.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Date;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@Table(name = "users")
 public class User implements Serializable {
-    private static final long serialVersionUID = 7156526077883281623L;
-    public Integer getId() {
-        return id;
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer userId;
+    @Column(nullable = false)
+    private String userName;
+    @Column(nullable = false)
+    private String userNickname;
+    @Column(nullable = false)
+    private int sex;
+    @Column(nullable = false)
+    private String email;
+    @Column(nullable = false)
+    private String telephone;
+    @Column
+    private String userPic;
+    @Column
+    private Date birthDate;
+
+    public User(String userName, String userNickname, int sex, String email, String telephone, Date birthDate) {
+        this.userName = userName;
+        this.userNickname = userNickname;
+        this.sex = sex;
+        this.email = email;
+        this.telephone = telephone;
+        this.birthDate = birthDate;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public String getUsername() {
-        return username;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserNickname() {
+        return userNickname;
+    }
+
+    public void setUserNickname(String userNickname) {
+        this.userNickname = userNickname;
+    }
+
+    public int getSex() {
+        return sex;
+    }
+
+    public void setSex(int sex) {
+        this.sex = sex;
     }
 
     public String getEmail() {
@@ -30,13 +83,27 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    public String getTelephone() {
+        return telephone;
+    }
 
-    @Column
-    private String username;
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
 
-    @Column
-    private String email;
+    public String getUserPic() {
+        return userPic;
+    }
+
+    public void setUserPic(String userPic) {
+        this.userPic = userPic;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
 }

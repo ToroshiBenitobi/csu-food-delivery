@@ -14,3 +14,8 @@ spring:
       ddl-auto: update
     # debug show sql
     show-sql: true
+
+  rabbitmq:
+    host: 127.0.0.1
+    username: guest
+    password: guest
