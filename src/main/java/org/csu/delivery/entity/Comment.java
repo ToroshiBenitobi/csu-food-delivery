@@ -7,6 +7,7 @@ import org.springframework.data.relational.core.sql.In;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Date;
 import java.sql.Timestamp;
 
 @Entity
@@ -24,10 +25,18 @@ public class Comment implements Serializable {
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
-    @Column
+    @Column(columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp datetime;
     @Column
     private Integer score;
     @Column
     private String content;
+
+    public Comment(User user, Product product, Integer score, String content) {
+        this.user = user;
+        this.product = product;
+        this.score = score;
+        this.content = content;
+        this.datetime = new Timestamp(System.currentTimeMillis());
+    }
 }

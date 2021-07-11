@@ -7,6 +7,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Getter
@@ -21,6 +23,8 @@ public class Order implements Serializable {
     private BigDecimal amount;
     @Column
     private String state;
+    @Column(columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private Timestamp timestamp;
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -58,5 +62,13 @@ public class Order implements Serializable {
 
     public void setShop(Shop shop) {
         this.shop = shop;
+    }
+
+    public Order( User user, Shop shop,BigDecimal amount) {
+        this.amount = amount;
+        this.user = user;
+        this.shop = shop;
+        this.timestamp = new Timestamp(System.currentTimeMillis());
+        this.state = "unpaid";
     }
 }

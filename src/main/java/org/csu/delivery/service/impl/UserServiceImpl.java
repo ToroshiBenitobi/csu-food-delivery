@@ -13,6 +13,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @CacheConfig(cacheNames = "users")
@@ -26,8 +27,8 @@ public class UserServiceImpl implements UserService {
 
     @Cacheable(key = "'user' + #id")
     public User getUserById(Integer id) {
-        User user = userRepository.findById(id).get();
-        return user;
+        Optional<User> user = userRepository.findById(id);
+        return user.orElse(null);
     }
 
     public User insertUser(User user) {
@@ -39,18 +40,12 @@ public class UserServiceImpl implements UserService {
     public User updateUser(User user) {
         User update = userRepository.getById(user.getUserId());
         userRepository.save(user);
-//        update.setUserName(user.getUserName());
-//        update.setUserPic(user.getUserPic());
-//        update.setSex(user.getSex());
-//        update.setBirthDate(user.getBirthDate());
-//        update.setTelephone(user.getTelephone());;
-//        update.setAddress(user.getAddress());
         return update;
     }
 
     @Override
     public User deleteUser(User user) {
-        userRepository.deleteById(user.getUserId());
+        userRepository.delete(user);
         return user;
     }
 
@@ -70,7 +65,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Address removeAddress(Address address) {
-        Address delete = addressRepository.getById(address.getAddressId());
+        Address delete = addressRepository.findById(address.getAddressId()).get();
         addressRepository.deleteById(address.getAddressId());
         return delete;
     }

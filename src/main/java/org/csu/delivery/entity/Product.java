@@ -28,4 +28,12 @@ public class Product implements Serializable {
     private String productDesc;
     @Column
     private String productPic;
+
+    public Product(Shop shop, String productName, String productDesc, BigDecimal price, String productPic) {
+        this.shop = shop;
+        this.price = price;
+        this.productName = productName;
+        this.productDesc = productDesc;
+        this.productPic = productPic;
+    }
 }

@@ -13,6 +13,7 @@ import java.sql.Date;
 @Getter
 @Setter
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Table(name = "users")
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -34,12 +35,13 @@ public class User implements Serializable {
     @Column
     private Date birthDate;
 
-    public User(String userName, String userNickname, int sex, String email, String telephone, Date birthDate) {
+    public User(String userName, String userNickname, String email, String telephone, int sex, Date birthDate, String userPic) {
         this.userName = userName;
         this.userNickname = userNickname;
         this.sex = sex;
         this.email = email;
         this.telephone = telephone;
+        this.userPic = userPic;
         this.birthDate = birthDate;
     }
 

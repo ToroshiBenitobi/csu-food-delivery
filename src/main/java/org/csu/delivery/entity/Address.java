@@ -3,6 +3,8 @@ package org.csu.delivery.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -32,15 +34,17 @@ public class Address implements Serializable {
     private String telephone;
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 
-    public Address(String location, String province, String city, String county, Double mapX, Double mapY, User user) {
+    public Address(User user, String province, String city, String county, String location, String telephone, Double mapX, Double mapY) {
         this.location = location;
         this.province = province;
         this.city = city;
         this.county = county;
         this.mapX = mapX;
         this.mapY = mapY;
+        this.telephone = telephone;
         this.user = user;
     }
 

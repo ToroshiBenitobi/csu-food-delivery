@@ -24,6 +24,12 @@ public class Message implements Serializable {
     private String content;
     @Column
     private boolean isUser;
-    @Column
+    @Column(columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp datetime;
+
+    public Message(String content, boolean isUser) {
+        this.content = content;
+        this.isUser = isUser;
+        this.datetime = new Timestamp(System.currentTimeMillis());
+    }
 }

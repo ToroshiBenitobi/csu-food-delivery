@@ -28,4 +28,13 @@ public class ShopAddress implements Serializable {
     private Double mapX;
     @Column
     private Double mapY;
+
+    public ShopAddress(String province, String city, String county, String location, Double mapX, Double mapY) {
+        this.location = location;
+        this.province = province;
+        this.city = city;
+        this.county = county;
+        this.mapX = mapX;
+        this.mapY = mapY;
+    }
 }
